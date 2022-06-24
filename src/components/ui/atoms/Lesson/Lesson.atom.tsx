@@ -1,5 +1,7 @@
 import React from 'react';
 import { CheckCircle, Lock } from 'phosphor-react';
+import { isPast, format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
 type LessonProps = {
   title: string;
@@ -9,11 +11,12 @@ type LessonProps = {
 };
 
 export const Lesson: React.FC<LessonProps> = ({ title, slug, avaliableAt, type }) => {
-  const isLessonAvailable = false;
+  const isLessonAvailable = isPast(avaliableAt);
+  const availableDateFormatted = format(avaliableAt, "EEEE' • 'd' de 'MMMM' • 'k'h'mm", { locale: ptBR });
 
   return (
     <a href="_blank" className="">
-      <span className="text-gray-300">{avaliableAt.toString()}</span>
+      <span className="text-gray-300">{availableDateFormatted}</span>
 
       <div className="rounded border border-gray-500 p-4 mt-2">
         <header className="flex items-center justify-between">
