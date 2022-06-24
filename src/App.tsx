@@ -1,5 +1,7 @@
+import { EventTemplate } from "./components/templates";
+
 function App() {
-  return <h1 className="text-2xl">Hello</h1>;
+  return <EventTemplate />;
 }
 
 export default App;
